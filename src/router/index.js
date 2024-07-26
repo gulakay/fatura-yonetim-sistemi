@@ -3,7 +3,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import InvoiceList from '../views/InvoiceList.vue'
 import CreateInvoice from '../views/CreateInvoice.vue'
 import CustomerManagement from '../views/CustomerManagement.vue'
-import ForgotPassword from '@/views/ForgotPassword.vue'
+
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
@@ -31,11 +31,7 @@ const routes = [
     component: CustomerManagement,
     meta: { requiresAuth: true },
   },
-  {
-    path: '/sifremi-unuttum',
-    name: 'forgotPassword',
-    component: ForgotPassword,
-  },
+ 
 ];
 
 const router = createRouter({
@@ -50,7 +46,7 @@ router.beforeEach((to, from, next) => {
     
 
   if (requiresAuth && !user) {
-    next('/');  // Burada `/login` gibi bir yol belirlemek iyi olur
+    next('/'); 
   } else if (!requiresAuth && user && to.path === '/') {
     next('/fatura-listesi');
   } else {
